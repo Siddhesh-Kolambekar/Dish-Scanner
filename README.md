@@ -4,11 +4,11 @@
 Dish Scanner is a React-based application that allows users to scan QR and barcodes of food items to retrieve relevant information such as calorie count, nutritional facts, and more. It simplifies tracking food intake and helps users make healthier choices.
 
 ## Project Type
-Frontend
+Fullstack
 
 ## Deployed App
 Live link: [https://cool-creponne-5792ec.netlify.app/](https://cool-creponne-5792ec.netlify.app/)
-Database: Firebase Realtime Database
+Database: MongoDB
 
 ## Directory Structure
 ```
@@ -39,14 +39,14 @@ my-app/
 [Attach a short video walkthrough showcasing the features of the application]
 
 ## Features
-- Scan QR and barcodes to fetch food details
+- Scan QR to fetch food details
 - Display nutritional information
-- Store scanned data using Firebase Realtime Database
+- Store scanned data using MongoDB Database
 - User-friendly interface with smooth animations
 
 ## Design Decisions or Assumptions
 - The app is optimized for mobile devices
-- Uses Firebase Realtime Database for storing scanned data
+- Uses MongoDB Database for storing scanned data
 - Scanning functionality is implemented using a third-party library
 - Minimalistic UI for better usability
 
@@ -74,13 +74,12 @@ npm run dev
 N/A
 
 ## APIs Used
-- Firebase Realtime Database
-- Barcode scanning library
+- QR scanning library
 
 ## Technology Stack
 - React.js
-- Firebase Realtime Database
+- MongoDB
 - JavaScript (ES6+)
 - HTML & CSS
-- Third-party barcode scanning library
+- Third-party QR scanning library
 
