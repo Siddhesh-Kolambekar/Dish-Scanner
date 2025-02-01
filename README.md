@@ -57,21 +57,22 @@ my-app/
 ## Installation & Getting Started
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/dish-scanner.git
-cd dish-scanner
+git clone https://github.com/Siddhesh-Kolambekar/Dish-Scanner.git
+cd Dish-Scanner
 
 # Install dependencies
 npm install
 
-# Start the development server
-npm start
+# Run the website
+npm run dev
 ```
 
 ## Usage
 1. Open the application.
-2. Click on the scan button to start scanning.
-3. Scan a food item barcode or QR code.
-4. View the fetched details on the screen.
+2. Click on the scan button.
+3. Sign up and log in to start scanning.
+4. Scan a food item QR code.
+5. View the fetched details on the screen.
 
 ## Credentials
 N/A
@@ -79,9 +80,6 @@ N/A
 ## APIs Used
 - Firebase Realtime Database
 - Barcode scanning library
-
-## API Endpoints
-N/A (Only Firebase is used for data storage)
 
 ## Technology Stack
 - React.js
