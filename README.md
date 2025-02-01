@@ -14,12 +14,26 @@ Database: Firebase Realtime Database
 ## Directory Structure
 ```
 my-app/
-├─ frontend/
-│  ├─ components/
-│  ├─ pages/
-│  ├─ assets/
-│  ├─ utils/
-│  ├─ ...
+├── .gitignore
+├── eslint.config.js
+├── index.html
+├── package-lock.json
+├── package.json
+├── postcss.config.js
+├── README.md
+├── tailwind.config.js
+├── vite.config.js
+├── node_modules/
+├── src/
+│   ├── components/
+│   ├── context/
+│   ├── qrgenerater/
+│   ├── assets/
+│   ├── styles/
+│   ├── App.css
+│   ├── App.jsx
+│   ├── index.css
+│   ├── main.jsx
 ```
 
 ## Video Walkthrough of the Project
