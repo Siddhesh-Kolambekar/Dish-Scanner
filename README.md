@@ -39,9 +39,6 @@ my-app/
 ## Video Walkthrough of the Project
 [Attach a short video walkthrough showcasing the features of the application]
 
-## Video Walkthrough of the Codebase
-[Attach a short video walkthrough explaining the code structure]
-
 ## Features
 - Scan QR and barcodes to fetch food details
 - Display nutritional information
