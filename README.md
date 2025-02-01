@@ -7,7 +7,7 @@ Dish Scanner is a React-based application that allows users to scan QR and barco
 Frontend
 
 ## Deployed App
-Frontend: [https://deployed-site.whatever](https://deployed-site.whatever)
+Frontend: [Deployed Link](https://cool-creponne-5792ec.netlify.app/)
 Backend: N/A
 Database: Firebase Realtime Database
 
