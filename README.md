@@ -36,7 +36,7 @@ my-app/
 ```
 
 ## Video Walkthrough of the Project
-[Attach a short video walkthrough showcasing the features of the application]
+<iframe src="https://drive.google.com/file/d/1B_J9I2YM9nENiuNhTaYHo_0wEusZ0EKu/preview" width="640" height="360" allow="autoplay"></iframe>
 
 ## Features
 - Scan QR to fetch food details
