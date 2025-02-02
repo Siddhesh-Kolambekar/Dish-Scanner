@@ -35,9 +35,8 @@ my-app/
 │   ├── main.jsx
 ```
 
-## Video Walkthrough of the Project
 ## Video Walkthrough of the Project  
-<a href="https://drive.google.com/file/d/1B_J9I2YM9nENiuNhTaYHo_0wEusZ0EKu/view" target="_blank">Watch the video walkthrough</a>
+https://drive.google.com/file/d/1B_J9I2YM9nENiuNhTaYHo_0wEusZ0EKu/view
 
 ## Features
 - Scan QR to fetch food details
