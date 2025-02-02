@@ -36,7 +36,7 @@ my-app/
 ```
 
 ## Video Walkthrough of the Project
-("https://drive.google.com/file/d/1B_J9I2YM9nENiuNhTaYHo_0wEusZ0EKu/view")
+"https://drive.google.com/file/d/1B_J9I2YM9nENiuNhTaYHo_0wEusZ0EKu/view"
 
 ## Features
 - Scan QR to fetch food details
