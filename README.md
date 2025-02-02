@@ -1,7 +1,7 @@
 # Dish Scanner
 
 ## Introduction
-Dish Scanner is a React-based application that allows users to scan QR and barcodes of food items to retrieve relevant information such as calorie count, nutritional facts, and more. It simplifies tracking food intake and helps users make healthier choices.
+Dish Scanner is a React-based application that allows users to scan QR and barcodes of food items to retrieve relevant information such as calorie count, nutritional facts, etc. It simplifies tracking food intake and helps users make healthier choices.
 
 ## Project Type
 Fullstack
@@ -72,6 +72,7 @@ npm run dev
 
 ## APIs Used
 - QR scanning library
+- Restful API
 
 ## Technology Stack
 - React.js
