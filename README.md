@@ -70,6 +70,10 @@ npm run dev
 4. Scan a food item QR code.
 5. View the fetched details on the screen.
 
+## Credentials
+- Admin email: Admin@gmail.com
+- Admin password: admin123
+
 ## APIs Used
 - QR scanning library
 - Restful API
