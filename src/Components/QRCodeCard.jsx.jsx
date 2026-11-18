@@ -3,6 +3,7 @@ import { useState } from "react";
 import QRCode from "react-qr-code";
 import { Link } from "react-router-dom";
 import "../styles/QRCard.css";
+import { FIREBASE_DATABASE_URL } from "../config/api";
 
 function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
   const [qrCodeVisible, setQrCodeVisible] = useState(false);
@@ -31,12 +32,15 @@ function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
 
   const deleteDish = () => {
     fetch(
-      `https://dish-qr-scanner-default-rtdb.firebaseio.com/Dishes/${dish.id}.json`,
+      `${FIREBASE_DATABASE_URL}/Dishes/${dish.id}.json`,
       {
         method: "DELETE",
       }
     )
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Firebase returned HTTP ${response.status}`);
+        }
         onDelete(dish.id); // Callback to notify parent about deletion
       })
       .catch((error) => {

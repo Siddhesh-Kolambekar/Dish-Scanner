@@ -171,7 +171,7 @@ const About = () => {
             <p className="text-gray-600 mb-4">
               Our Smart Calorie Tracker allows you to instantly calculate and
               track the calorie content of your meals with just a QR code scan.
-              Here's how it works:
+              Here&apos;s how it works:
             </p>
             <ol className="space-y-4 text-gray-600">
               <li className="flex items-center space-x-2">
@@ -204,7 +204,7 @@ const About = () => {
             <h2 className="text-3xl font-semibold mb-4">Technical Overview</h2>
             <p className="text-gray-600">
               Our Smart Calorie Tracker app is built using modern technologies
-              to ensure reliability, scalability, and ease of use. Here's a
+              to ensure reliability, scalability, and ease of use. Here&apos;s a
               brief overview of the technical aspects:
             </p>
             <ul className="space-y-4 text-gray-600">

@@ -37,7 +37,8 @@ function Scanner() {
               onUpdate={(err, result) => {
                 if (result) {
                   try {
-                    const foodObject = JSON.parse(result.text); // Parse the QR code data as an object
+                    const foodObject = JSON.parse(result.text); // Parse the QR code data as an 
+                    console.log("Scanned QR code data:", foodObject);
                     updateFoodData(foodObject); // Update the context with the parsed data
                     navigate("/Calorie");
                   } catch (e) {

@@ -19,7 +19,7 @@ const Home = () => {
                 />
               </div>
               <p className="text-gray-600 max-w-md mx-auto md:mx-0 text-sm md:text-base">
-                Effortlessly track your meal's nutritional value with our QR
+                Effortlessly track your meal&apos;s nutritional value with our QR
                 Code Calories Calculator. Simply scan the QR code of your dish,
                 and get instant insights into its calorie count and nutritional
                 breakdown. Stay informed and make healthier choices with ease!

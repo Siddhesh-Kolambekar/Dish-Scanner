@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
+import { FIREBASE_DATABASE_URL } from "../config/api";
 
 function AddDish() {
   const [dishName, setDishName] = useState("");
@@ -13,11 +14,14 @@ function AddDish() {
     e.preventDefault();
     const newDish = { dishName, items };
 
-    fetch("https://dish-qr-scanner-default-rtdb.firebaseio.com/Dishes/.json", {
+    fetch(`${FIREBASE_DATABASE_URL}/Dishes/.json`, {
       method: "POST",
       body: JSON.stringify(newDish),
     })
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Firebase returned HTTP ${response.status}`);
+        }
         navigate("/all-dishes");
       })
       .catch((error) => {

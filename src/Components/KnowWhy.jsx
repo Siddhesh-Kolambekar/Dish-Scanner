@@ -10,6 +10,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { AlertCircle } from "lucide-react";
+import PropTypes from "prop-types";
 
 const KnowWhy = () => {
   const data = [
@@ -86,6 +87,18 @@ const KnowWhy = () => {
         </div>
       </div>
     );
+  };
+
+  CustomTooltip.propTypes = {
+    active: PropTypes.bool,
+    payload: PropTypes.arrayOf(
+      PropTypes.shape({
+        color: PropTypes.string,
+        name: PropTypes.string,
+        value: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      })
+    ),
+    label: PropTypes.string,
   };
 
   return (
@@ -178,12 +191,12 @@ const KnowWhy = () => {
           <div className="flex flex-col lg:flex-row bg-yellow-50 rounded-lg shadow-lg p-4 md:p-6 gap-4 md:gap-6">
             <div className="flex-1">
               <h1 className="text-sm md:text-base font-semibold text-gray-800 leading-relaxed text-center lg:text-left">
-                As the old saying goes, <strong>"You are what you eat".</strong>{" "}
+                As the old saying goes, <strong>&quot;You are what you eat&quot;.</strong>{" "}
                 This timeless wisdom reminds us that the food we consume
                 directly influences our health and well-being. Tracking calories
                 is a modern way to honor this truth, ensuring we fuel our bodies
                 with the right balance of energy. Just as{" "}
-                <strong>"a stitch in time saves nine", </strong> being mindful
+                <strong>&quot;a stitch in time saves nine&quot;, </strong> being mindful
                 of what we eat today can prevent larger health issues in the
                 future.
               </h1>

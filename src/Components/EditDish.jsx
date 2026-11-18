@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
+import { FIREBASE_DATABASE_URL } from "../config/api";
 
 function EditDish() {
   const { id } = useParams();
@@ -12,9 +13,14 @@ function EditDish() {
 
   useEffect(() => {
     fetch(
-      `https://dish-qr-scanner-default-rtdb.firebaseio.com/Dishes/${id}.json`
+      `${FIREBASE_DATABASE_URL}/Dishes/${id}.json`
     )
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Firebase returned HTTP ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
         setDishName(data.dishName);
         setItems(data.items);
@@ -29,13 +35,16 @@ function EditDish() {
     const updatedDish = { dishName, items };
 
     fetch(
-      `https://dish-qr-scanner-default-rtdb.firebaseio.com/Dishes/${id}.json`,
+      `${FIREBASE_DATABASE_URL}/Dishes/${id}.json`,
       {
         method: "PUT",
         body: JSON.stringify(updatedDish),
       }
     )
-      .then(() => {
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Firebase returned HTTP ${response.status}`);
+        }
         navigate("/all-dishes");
       })
       .catch((error) => {

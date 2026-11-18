@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react";
 import QRCodeCard from "./QRCodeCard.jsx";
 import { useNavigate } from "react-router-dom";
 import { AdminLoginContext } from "../Context/AdminLoginContext.jsx";
+import { FIREBASE_DATABASE_URL } from "../config/api";
 
 function AllDishes() {
   const { AdminLogin, AdminLoginUpdater } = useContext(AdminLoginContext);
@@ -9,12 +10,17 @@ function AllDishes() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://dish-qr-scanner-default-rtdb.firebaseio.com/Dishes/.json")
-      .then((response) => response.json())
+    fetch(`${FIREBASE_DATABASE_URL}/Dishes/.json`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`Firebase returned HTTP ${response.status}`);
+        }
+        return response.json();
+      })
       .then((data) => {
-        const dishesArray = Object.keys(data).map((key) => {
+        const dishesArray = data ? Object.keys(data).map((key) => {
           return { id: key, ...data[key] };
-        });
+        }) : [];
         setMenuData(dishesArray);
       })
       .catch((error) => {

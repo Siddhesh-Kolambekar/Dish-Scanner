@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
+import { BACKEND_URL } from "../config/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,7 +14,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "https://mealplanner-backend-8v3d.onrender.com/api/login",
+        `${BACKEND_URL}/api/login`,
         { email, password }
       );
       localStorage.setItem("authToken", response.data.token);
@@ -60,7 +61,7 @@ const Login = () => {
         </form>
 
         <p className="text-gray-600 text-center mt-4">
-          Don't have an account?{" "}
+          Don&apos;t have an account?{" "}
           <Link to="/signup" className="text-blue-500 hover:underline">
             Register
           </Link>

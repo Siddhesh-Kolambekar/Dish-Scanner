@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
+import { BACKEND_URL } from "../config/api";
 
 const SignUp = () => {
   const [name, setFullName] = useState("");
@@ -22,7 +23,7 @@ const SignUp = () => {
 
     try {
       await axios.post(
-        "https://mealplanner-backend-8v3d.onrender.com/api/register",
+        `${BACKEND_URL}/api/register`,
         {
           name,
           email,
