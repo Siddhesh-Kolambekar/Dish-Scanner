@@ -18,10 +18,15 @@ const Calorie = () => {
 
   useEffect(() => {
     if (foodData && foodData.items) {
-      const updatedItems = foodData.items.map((item) => ({
-        name: item.name,
-        quantity: Number(item.quantity),
-        calories: Number(item.calories),
+      const itemsArray = Array.isArray(foodData.items)
+        ? foodData.items
+        : typeof foodData.items === "object"
+        ? Object.values(foodData.items)
+        : [];
+      const updatedItems = itemsArray.map((item) => ({
+        name: item?.name || "",
+        quantity: Number(item?.quantity || 0),
+        calories: Number(item?.calories || 0),
       }));
       setFoodItems(updatedItems);
     }

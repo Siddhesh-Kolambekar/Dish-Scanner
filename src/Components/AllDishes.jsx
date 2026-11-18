@@ -7,6 +7,7 @@ import { FIREBASE_DATABASE_URL } from "../config/api";
 function AllDishes() {
   const { AdminLogin, AdminLoginUpdater } = useContext(AdminLoginContext);
   const [menuData, setMenuData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,9 +23,11 @@ function AllDishes() {
           return { id: key, ...data[key] };
         }) : [];
         setMenuData(dishesArray);
+        setIsLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching data from Firebase:", error);
+        setIsLoading(false);
       });
   }, []);
 
@@ -35,26 +38,30 @@ function AllDishes() {
   return (
     <>
       <div className="flex justify-between items-center px-6 py-4 bg-blue-100 shadow-md rounded-lg">
-        {menuData.length > 0 && (
-          <>
-            <button
-              className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-2 px-5 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
-              onClick={() => navigate("/add-dish")}
-            >
-              ➕ Add Dish
-            </button>
-            <button
-              className="bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold py-2 px-5 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
-              onClick={() => AdminLoginUpdater()}
-            >
-              {AdminLogin ? "🚪 Logout" : "🔑 Login"}
-            </button>
-          </>
-        )}
+        <button
+          className="bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-2 px-5 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+          onClick={() => navigate("/add-dish")}
+        >
+          ➕ Add Dish
+        </button>
+        <button
+          className="bg-gradient-to-r from-red-500 to-pink-600 text-white font-semibold py-2 px-5 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+          onClick={() => AdminLoginUpdater()}
+        >
+          {AdminLogin ? "🚪 Logout" : "🔑 Login"}
+        </button>
       </div>
 
       <div className="p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {menuData.length > 0 ? (
+        {isLoading ? (
+          <div className="col-span-full w-full flex justify-center items-center py-12">
+            <img
+              className="w-64 h-64 animate-pulse"
+              src="https://ik.imagekit.io/m9qnay09g/Animation%20-%201737285406045.gif?updatedAt=1737286046150"
+              alt="Loading"
+            />
+          </div>
+        ) : menuData.length > 0 ? (
           menuData.map((dish) => {
             const { dishName, id, items } = dish;
             const jsonData = JSON.stringify(dish);
@@ -75,12 +82,14 @@ function AllDishes() {
             );
           })
         ) : (
-          <div className="w-full flex justify-center items-center">
-            <img
-              className="w-64 h-64 animate-pulse"
-              src="https://ik.imagekit.io/m9qnay09g/Animation%20-%201737285406045.gif?updatedAt=1737286046150"
-              alt="Loading"
-            />
+          <div className="col-span-full w-full flex flex-col justify-center items-center py-12 text-center">
+            <p className="text-gray-600 text-lg mb-4">No dishes found in the menu.</p>
+            <button
+              className="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-blue-600 transition duration-300"
+              onClick={() => navigate("/add-dish")}
+            >
+              Add Your First Dish
+            </button>
           </div>
         )}
       </div>

@@ -16,6 +16,12 @@ function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
     setQrCodeVisible(false);
   };
 
+  const itemsList = Array.isArray(dish?.items)
+    ? dish.items
+    : dish?.items && typeof dish.items === "object"
+    ? Object.values(dish.items)
+    : [];
+
   const downloadQRCode = () => {
     const svg = document.getElementById(`qrCode-${dish.id}`);
     const serializer = new XMLSerializer();
@@ -52,11 +58,11 @@ function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
     <div className="qr-card-wrapper">
       <h2 className="qr-card-title">{dishName}</h2>
       <ul className="qr-item-list">
-        {dish.items.map((item, index) => (
+        {itemsList.map((item, index) => (
           <li className="qr-item" key={index}>
-            <span>{item.name}</span>
+            <span>{item?.name}</span>
             <span>
-              Qty: {item.quantity}, Cal: {item.calories}
+              Qty: {item?.quantity}, Cal: {item?.calories}
             </span>
           </li>
         ))}
