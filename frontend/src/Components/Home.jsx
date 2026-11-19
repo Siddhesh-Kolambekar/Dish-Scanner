@@ -3,6 +3,7 @@
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const authToken = localStorage.getItem("authToken");
   return (
     <div className="flex flex-col min-h-screen">
       {/* Main Content */}
@@ -25,7 +26,7 @@ const Home = () => {
                 breakdown. Stay informed and make healthier choices with ease!
               </p>
 
-              <Link to="/Login">
+              <Link to= {authToken ? "/Scanner" : "/Login"}>
                 <button className="w-full md:w-auto bg-yellow-300 hover:bg-yellow-400 px-6 py-2 rounded-full font-medium">Scan QR</button>{" "}
               </Link>
 

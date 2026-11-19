@@ -9,6 +9,7 @@ export const AdminLoginProvider = ({children}) => {
 
     const AdminLoginUpdater= ()=>{
         setAdminLogin(!AdminLogin)
+        AdminLogin && localStorage.removeItem("authToken");
     }
 
   return (

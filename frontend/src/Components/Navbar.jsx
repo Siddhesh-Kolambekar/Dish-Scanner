@@ -1,15 +1,23 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
+  const authToken = localStorage.getItem("authToken");
+  const navigate = useNavigate(); // Added
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    navigate("/");
+  };
+
   const navLinks = [
     { path: "/", label: "HOME" },
     { path: "/Calorie", label: "CALORIE" },
     { path: "/About", label: "ABOUT" },
     { path: "/Team", label: "TEAM" },
-    { path: "/Login", label: "Login/SignUp" },
+    { path: "/Login", label: authToken ? "Logout" : "Login/SignUp" },
     { path: "/KnowWhy", label: "Know Why?", isSpecial: true },
   ];
 
@@ -32,6 +40,14 @@ const Navbar = () => {
               <Link
                 key={path}
                 to={path}
+                onClick={
+                  label === "Logout"
+                    ? (e) => {
+                        e.preventDefault();
+                        handleLogout();
+                      }
+                    : undefined
+                }
                 className={`text-gray-600 hover:text-gray-900 transition-colors duration-200 ${
                   isSpecial
                     ? "border-2 border-gray-600 px-4 py-1 rounded-full hover:border-gray-900"
@@ -51,7 +67,11 @@ const Navbar = () => {
               aria-expanded={isOpen}
               aria-label={isOpen ? "Close main menu" : "Open main menu"}
             >
-              {isOpen ? <X className="block h-6 w-6" /> : <Menu className="block h-6 w-6" />}
+              {isOpen ? (
+                <X className="block h-6 w-6" />
+              ) : (
+                <Menu className="block h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -64,8 +84,19 @@ const Navbar = () => {
             <Link
               key={path}
               to={path}
+              onClick={
+                label === "Logout"
+                  ? (e) => {
+                      e.preventDefault();
+                      handleLogout();
+                      setIsOpen(false);
+                    }
+                  : () => setIsOpen(false)
+              }
               className={`block px-3 py-2 rounded-md text-base font-medium text-gray-600 hover:text-gray-900 hover:bg-gray-50 ${
-                isSpecial ? "mt-4 border-2 border-gray-600 text-center mx-3" : ""
+                isSpecial
+                  ? "mt-4 border-2 border-gray-600 text-center mx-3"
+                  : ""
               }`}
             >
               {label}
