@@ -4,4 +4,4 @@ export const FIREBASE_DATABASE_URL =
 
 export const BACKEND_URL =
   import.meta.env.VITE_BACKEND_URL ??
-  "https://mealplanner-backend-8v3d.onrender.com";
+  "https://dish-scanner-backend.onrender.com";
