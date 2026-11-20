@@ -3,10 +3,10 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import authRoutes from "./routes/authRoutes.js";
+import dishRoutes from "./routes/dishRoutes.js";
 
 const app = express();
 
-// CORS configuration
 app.use(
   cors({
     origin: process.env.CLIENT_URL,
@@ -15,13 +15,11 @@ app.use(
   }),
 );
 
-// Middleware
 app.use(express.json());
 
-// Routes
 app.use("/api", authRoutes);
+app.use("/api/dishes", dishRoutes);
 
-// Health check
 app.get("/", (req, res) => {
   res.json({
     message: "Dish Scanner API is running",
