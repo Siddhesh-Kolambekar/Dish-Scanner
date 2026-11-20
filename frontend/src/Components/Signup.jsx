@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
-import { BACKEND_URL } from "../config/api";
+
+const BACKEND_URL = import.meta.env.BACKEND_URL;
 
 const SignUp = () => {
   const [name, setFullName] = useState("");
@@ -22,19 +23,16 @@ const SignUp = () => {
     setIsLoading(true);
 
     try {
-      await axios.post(
-        `${BACKEND_URL}/api/register`,
-        {
-          name,
-          email,
-          password,
-        }
-      );
+      await axios.post(`${BACKEND_URL}/api/register`, {
+        name,
+        email,
+        password,
+      });
 
       setErrorMessage("");
       navigate("/login");
     } catch (error) {
-      setErrorMessage("An error occurred. Please try again later.",error);  
+      setErrorMessage("An error occurred. Please try again later.", error);
     } finally {
       setIsLoading(false);
     }

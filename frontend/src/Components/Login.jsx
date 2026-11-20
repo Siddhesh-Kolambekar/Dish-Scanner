@@ -1,7 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { BACKEND_URL } from "../config/api";
+
+const BACKEND_URL = import.meta.env.BACKEND_URL;
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -13,10 +14,10 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post(
-        `${BACKEND_URL}/api/login`,
-        { email, password }
-      );
+      const response = await axios.post(`${BACKEND_URL}/api/login`, {
+        email,
+        password,
+      });
       localStorage.setItem("authToken", response.data.token);
       navigate("/Scanner");
     } catch {

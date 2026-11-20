@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
-import { FIREBASE_DATABASE_URL } from "../config/api";
+
+const FIREBASE_DATABASE_URL = import.meta.env.FIREBASE_DATABASE_URL;
 
 function AddDish() {
   const [dishName, setDishName] = useState("");

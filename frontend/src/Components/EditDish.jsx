@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { MoveLeft } from "lucide-react";
-import { FIREBASE_DATABASE_URL } from "../config/api";
+
+const FIREBASE_DATABASE_URL = import.meta.env.FIREBASE_DATABASE_URL;
 
 function EditDish() {
   const { id } = useParams();
@@ -12,9 +13,7 @@ function EditDish() {
   ]);
 
   useEffect(() => {
-    fetch(
-      `${FIREBASE_DATABASE_URL}/Dishes/${id}.json`
-    )
+    fetch(`${FIREBASE_DATABASE_URL}/Dishes/${id}.json`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Firebase returned HTTP ${response.status}`);
@@ -34,13 +33,10 @@ function EditDish() {
     e.preventDefault();
     const updatedDish = { dishName, items };
 
-    fetch(
-      `${FIREBASE_DATABASE_URL}/Dishes/${id}.json`,
-      {
-        method: "PUT",
-        body: JSON.stringify(updatedDish),
-      }
-    )
+    fetch(`${FIREBASE_DATABASE_URL}/Dishes/${id}.json`, {
+      method: "PUT",
+      body: JSON.stringify(updatedDish),
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Firebase returned HTTP ${response.status}`);

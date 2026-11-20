@@ -3,7 +3,8 @@ import { useState } from "react";
 import QRCode from "react-qr-code";
 import { Link } from "react-router-dom";
 import "../styles/QRCard.css";
-import { FIREBASE_DATABASE_URL } from "../config/api";
+
+const FIREBASE_DATABASE_URL = import.meta.env.FIREBASE_DATABASE_URL;
 
 function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
   const [qrCodeVisible, setQrCodeVisible] = useState(false);
@@ -19,8 +20,8 @@ function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
   const itemsList = Array.isArray(dish?.items)
     ? dish.items
     : dish?.items && typeof dish.items === "object"
-    ? Object.values(dish.items)
-    : [];
+      ? Object.values(dish.items)
+      : [];
 
   const downloadQRCode = () => {
     const svg = document.getElementById(`qrCode-${dish.id}`);
@@ -37,12 +38,9 @@ function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
   };
 
   const deleteDish = () => {
-    fetch(
-      `${FIREBASE_DATABASE_URL}/Dishes/${dish.id}.json`,
-      {
-        method: "DELETE",
-      }
-    )
+    fetch(`${FIREBASE_DATABASE_URL}/Dishes/${dish.id}.json`, {
+      method: "DELETE",
+    })
       .then((response) => {
         if (!response.ok) {
           throw new Error(`Firebase returned HTTP ${response.status}`);
@@ -73,27 +71,24 @@ function QRCodeCard({ dish, dishName, jsonData, onDelete }) {
             Generate QR Code
           </button>
           <div className="edit-delete-div">
-          <Link to={`/edit/${dish.id}`} className="qr-edit-link-wrapper">
-            <button className="editbtn">Edit</button>
-          </Link>
-          <button className="deletebtn" onClick={deleteDish}>
-            Delete
-          </button>
-
+            <Link to={`/edit/${dish.id}`} className="qr-edit-link-wrapper">
+              <button className="editbtn">Edit</button>
+            </Link>
+            <button className="deletebtn" onClick={deleteDish}>
+              Delete
+            </button>
           </div>
         </div>
       ) : (
         <div className="qr-code-container">
           <QRCode id={`qrCode-${dish.id}`} value={jsonData} size={120} />
           <div className="QR-Button-bottom-div">
-
-          <button className="qr-btn qr-btn-download" onClick={downloadQRCode}>
-            Download QR
-          </button>
-          <button className="qr-btn qr-btn-close" onClick={closeQRCode}>
-            Close QR
-          </button>
-
+            <button className="qr-btn qr-btn-download" onClick={downloadQRCode}>
+              Download QR
+            </button>
+            <button className="qr-btn qr-btn-close" onClick={closeQRCode}>
+              Close QR
+            </button>
           </div>
         </div>
       )}

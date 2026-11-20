@@ -2,7 +2,8 @@ import { useState, useEffect, useContext } from "react";
 import QRCodeCard from "./QRCodeCard.jsx";
 import { useNavigate } from "react-router-dom";
 import { AdminLoginContext } from "../Context/AdminLoginContext.jsx";
-import { FIREBASE_DATABASE_URL } from "../config/api";
+
+const FIREBASE_DATABASE_URL = import.meta.env.FIREBASE_DATABASE_URL;
 
 function AllDishes() {
   const { AdminLogin, AdminLoginUpdater } = useContext(AdminLoginContext);
@@ -19,9 +20,11 @@ function AllDishes() {
         return response.json();
       })
       .then((data) => {
-        const dishesArray = data ? Object.keys(data).map((key) => {
-          return { id: key, ...data[key] };
-        }) : [];
+        const dishesArray = data
+          ? Object.keys(data).map((key) => {
+              return { id: key, ...data[key] };
+            })
+          : [];
         setMenuData(dishesArray);
         setIsLoading(false);
       })
@@ -83,7 +86,9 @@ function AllDishes() {
           })
         ) : (
           <div className="col-span-full w-full flex flex-col justify-center items-center py-12 text-center">
-            <p className="text-gray-600 text-lg mb-4">No dishes found in the menu.</p>
+            <p className="text-gray-600 text-lg mb-4">
+              No dishes found in the menu.
+            </p>
             <button
               className="bg-blue-500 text-white font-semibold py-2 px-6 rounded-lg shadow hover:bg-blue-600 transition duration-300"
               onClick={() => navigate("/add-dish")}
